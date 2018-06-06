@@ -1,0 +1,652 @@
+{
+    "layers": {
+        "conv1": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                64
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "data"
+            ], 
+            "strides": [
+                1, 
+                2, 
+                2, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "conv10": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                1000
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire9/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "drop9": {
+            "dropout_keep_prob": 0.5, 
+            "parents": [
+                "fire9/concat"
+            ], 
+            "type": "Dropout"
+        }, 
+        "fire2/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire2/expand1x1", 
+                "fire2/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire2/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                64
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire2/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire2/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                64
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire2/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire2/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                16
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "pool1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire3/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire3/expand1x1", 
+                "fire3/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire3/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                64
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire3/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire3/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                64
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire3/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire3/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                16
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire2/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire4/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire4/expand1x1", 
+                "fire4/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire4/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                128
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire4/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire4/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                128
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire4/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire4/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                32
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "pool3"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire5/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire5/expand1x1", 
+                "fire5/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire5/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                128
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire5/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire5/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                128
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire5/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire5/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                32
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire4/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire6/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire6/expand1x1", 
+                "fire6/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire6/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                192
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire6/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire6/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                192
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire6/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire6/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                48
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "pool5"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire7/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire7/expand1x1", 
+                "fire7/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire7/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                192
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire7/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire7/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                192
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire7/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire7/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                48
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire6/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire8/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire8/expand1x1", 
+                "fire8/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire8/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                256
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire8/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire8/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                256
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire8/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire8/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                64
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire7/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire9/concat": {
+            "dim": 3, 
+            "parents": [
+                "fire9/expand1x1", 
+                "fire9/expand3x3"
+            ], 
+            "type": "Concatenate"
+        }, 
+        "fire9/expand1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                256
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire9/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire9/expand3x3": {
+            "filter": [
+                3, 
+                3, 
+                -1, 
+                256
+            ], 
+            "padding": "SAME", 
+            "parents": [
+                "fire9/squeeze1x1"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "fire9/squeeze1x1": {
+            "filter": [
+                1, 
+                1, 
+                -1, 
+                64
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire8/concat"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Convolution"
+        }, 
+        "pool1": {
+            "ksize": [
+                1, 
+                3, 
+                3, 
+                1
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "conv1"
+            ], 
+            "strides": [
+                1, 
+                2, 
+                2, 
+                1
+            ], 
+            "type": "Pooling"
+        }, 
+        "pool10": {
+            "ksize": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "conv10"
+            ], 
+            "strides": [
+                1, 
+                1, 
+                1, 
+                1
+            ], 
+            "type": "Pooling"
+        }, 
+        "pool3": {
+            "ksize": [
+                1, 
+                3, 
+                3, 
+                1
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire3/concat"
+            ], 
+            "strides": [
+                1, 
+                2, 
+                2, 
+                1
+            ], 
+            "type": "Pooling"
+        }, 
+        "pool5": {
+            "ksize": [
+                1, 
+                3, 
+                3, 
+                1
+            ], 
+            "padding": "VALID", 
+            "parents": [
+                "fire5/concat"
+            ], 
+            "strides": [
+                1, 
+                2, 
+                2, 
+                1
+            ], 
+            "type": "Pooling"
+        }, 
+        "prob": {
+            "parents": [
+                "pool10"
+            ], 
+            "type": "Softmax"
+        }
+    }, 
+    "name": ""
+}
