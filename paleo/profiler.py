@@ -106,10 +106,13 @@ class Profiler():
                     logger.info('- %s: %s  %s' % (profiler.name, executor_time,
                                                   profiler.message))
 
-                    results.append(
-                        (layer_spec.name, flop_based_time.total_time,
-                         executor_time.total_time, 0, flops_profiler.message,
-                         profiler.message))
+                results.append(
+                    (layer_spec.name, flop_based_time.total_time,
+                        executor_time.total_time, 0, flops_profiler.message,
+                        profiler.message))
+            else:
+                results.append((flops_profiler.name, flop_based_time.total_time, flop_based_time.total_time, 0,
+                                flops_profiler.message, flops_profiler.message))
         return results
 
     def profile_full_pass(self, device, num_warmup, num_iter, batch_size):
@@ -385,12 +388,14 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
             options.num_iter = num_iter
             options.num_warmup = num_warmup
             options.ppp_comp = ppp_comp
+            options.use_cudnn_heuristics = True
 
             tensorflow_result, cudnn_result = None, None
             if executor == 'tensorflow':
                 options.use_cudnn_heuristics = False
                 tensorflow_result = profiler.profile(
                     device_name, options, executor='tensorflow')
+                print("tensorflow_result =  ", tensorflow_result)
 
             if not use_only_gemm:
                 options.use_cudnn_heuristics = True

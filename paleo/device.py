@@ -75,7 +75,7 @@ NETWORKS = {'aws': AWS,
 
 # Predefined devices.
 GPU_TITAN_X = Device(
-    'Titan X', clock=1000, peek_gflop=6144, mem_bandwidth=336.5, is_gpu=True)
+    'Titan X', clock=1000, peek_gflop=6144, mem_bandwidth=336.5, is_gpu=False)
 
 GPU_K20 = Device(
     'K20', clock=1000, peek_gflop=3520, mem_bandwidth=208, is_gpu=True)

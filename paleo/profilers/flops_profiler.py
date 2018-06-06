@@ -168,6 +168,7 @@ class FlopsProfiler(BaseProfiler):
             algo, ws_size = self.cudnn.get_convolution_fwd_algorithm(
                 layer.inputs, layer.filters, layer.strides, layer._pad_h,
                 layer._pad_w)
+
             algorithm_name = self.cudnn.CONV_ALGO_FWD_NAME[algo]
             self.message = '%s %f MB' % (algorithm_name, ws_size / 10 ** 6)
 
@@ -287,6 +288,7 @@ class FlopsProfiler(BaseProfiler):
             inputs: [N, H, W, C]
             filters: [H, W, C_in, C_out]
         """
+
         # Mul and add per output pixel: kernel_w x kernel_h x in_channel
         flops = 2 * layer.filters[0] * layer.filters[1] * layer.filters[2]
 
