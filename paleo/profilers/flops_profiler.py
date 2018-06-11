@@ -259,7 +259,7 @@ class FlopsProfiler(BaseProfiler):
 
         if not self.options.use_cudnn_heuristics:
             self.message = 'Heuristic disabled.'
-            return self._profile_conv2d_gemm(dummy_layer)
+            return self._profile_conv2d_fft(dummy_layer)
 
         # Use cudnn heuristics to get the algorithm used.
         algo, ws_size = self.cudnn.get_convolution_bwd_filter_algorithm(

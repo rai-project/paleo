@@ -9,6 +9,7 @@ import os
 
 import click
 import numpy as np
+import pprint
 
 from paleo import __version__
 from paleo.graph import OperationGraph
@@ -18,10 +19,11 @@ from paleo import simulation
 from paleo.utils import save_layer
 from paleo import comm
 
+pp = pprint.PrettyPrinter(indent=4)
 FORMAT = "%(levelname)s %(pathname)s:%(lineno)d] %(message)s"
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger("paleo")
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 class Profiler():
@@ -84,13 +86,14 @@ class Profiler():
                 # We cannot use cuda stream because of the python wrapper.
                 options.use_cudnn_heuristics = False
 
+            # pp.pprint(device_spec.name)
+            # pp.pprint(device_spec.is_gpu)
             flops_profiler = profilers.FlopsProfiler(options, device_spec)
             flop_based_time = flops_profiler.profile(layer)
 
             logger.info('Layer: %s' % layer_spec.name)
             logger.info('- %s: %s  %s' % (flops_profiler.name, flop_based_time,
                                           flops_profiler.message))
-
             if device_spec.is_gpu:
                 profiler = None
                 if executor == 'cudnn':
@@ -111,7 +114,7 @@ class Profiler():
                         executor_time.total_time, 0, flops_profiler.message,
                         profiler.message))
             else:
-                results.append((flops_profiler.name, flop_based_time.total_time, flop_based_time.total_time, 0,
+                results.append((layer_spec.name, flops_profiler.name, flop_based_time.total_time, flop_based_time.total_time, 0,
                                 flops_profiler.message, flops_profiler.message))
         return results
 
@@ -346,16 +349,16 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
         assert len(cudnn_result) == len(tensorflow_result)
 
         print(separator.join(
-            ['layer', 'ours', 'cudnn', 'tensorflow', 'ours_alg', 'cu_alg']))
+            ['layer', 'prof', 'ours', 'cudnn', 'tensorflow', 'ours_alg', 'cu_alg']))
         sum_ours, sum_cu, sum_tf = 0, 0, 0
         for cudnn_prof, tf_prof in zip(cudnn_result, tensorflow_result):
-            (layer_name, ours_time, cudnn_time, tf_time, our_msg,
-             cu_msg) = ['', 0, 0, 0, '', '']
+            (layer_name, profiler, ours_time, cudnn_time, tf_time, our_msg,
+             cu_msg) = ['', '', 0, 0, 0, '', '']
             if cudnn_prof:
-                layer_name, ours_time, cudnn_time, _, our_msg, cu_msg = (
+                layer_name, profiler, ours_time, cudnn_time, _, our_msg, cu_msg = (
                     cudnn_prof)
             if tf_prof:
-                layer_name, ours_time, tf_time, _, our_msg, _ = tf_prof
+                layer_name, profiler, ours_time, tf_time, _, our_msg, _ = tf_prof
 
             our_msg = our_msg.replace('CUDNN_CONVOLUTION_', '')
             cu_msg = cu_msg.replace('CUDNN_CONVOLUTION_', '')
@@ -369,7 +372,7 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
 
             print(separator.join([
                 str(x)
-                for x in (layer_name, ours_time, cudnn_time, tf_time, our_msg,
+                for x in (layer_name, profiler, ours_time, cudnn_time, tf_time, our_msg,
                           cu_msg)
             ]))
         print(separator.join(['Sum', str(sum_ours), str(sum_cu), str(sum_tf)]))
@@ -388,7 +391,7 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
             options.num_iter = num_iter
             options.num_warmup = num_warmup
             options.ppp_comp = ppp_comp
-            options.use_cudnn_heuristics = True
+            options.use_cudnn_heuristics = False
 
             tensorflow_result, cudnn_result = None, None
             if executor == 'tensorflow':
@@ -399,7 +402,7 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
 
             if not use_only_gemm:
                 options.use_cudnn_heuristics = True
-
+            print("use_only_gemm %s", use_only_gemm)
             if executor == 'cudnn':
                 cudnn_result = profiler.profile(
                     device_name, options, executor='cudnn')
