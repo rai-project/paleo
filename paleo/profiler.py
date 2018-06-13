@@ -23,7 +23,7 @@ pp = pprint.PrettyPrinter(indent=4)
 FORMAT = "%(levelname)s %(pathname)s:%(lineno)d] %(message)s"
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger("paleo")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 class Profiler():

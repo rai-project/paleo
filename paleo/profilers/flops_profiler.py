@@ -193,9 +193,9 @@ class FlopsProfiler(BaseProfiler):
                                      algorithm_name)
 
         if self.options.include_bias_and_activation:
-            raise ValueError(
-                'We choose not to include bias and activation for'
-                'simplicity. And they are by no mean the bottleneck.')
+            # raise ValueError(
+            #     'We choose not to include bias and activation for'
+            #     'simplicity. And they are by no mean the bottleneck.')
             t_bias = self._profile_bias(layer)
             if layer.activation_fn:
                 t_relu = self._profile_relu(layer)
@@ -259,7 +259,7 @@ class FlopsProfiler(BaseProfiler):
 
         if not self.options.use_cudnn_heuristics:
             self.message = 'Heuristic disabled.'
-            return self._profile_conv2d_fft(dummy_layer)
+            return self._profile_conv2d_gemm(dummy_layer)
 
         # Use cudnn heuristics to get the algorithm used.
         algo, ws_size = self.cudnn.get_convolution_bwd_filter_algorithm(
