@@ -402,7 +402,7 @@ def profile(netspec_files, device_name, num_warmup, num_iter, extract_conv_dir,
 
             if not use_only_gemm:
                 options.use_cudnn_heuristics = True
-            print("use_only_gemm %s", use_only_gemm)
+
             if executor == 'cudnn':
                 cudnn_result = profiler.profile(
                     device_name, options, executor='cudnn')

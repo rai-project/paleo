@@ -78,7 +78,7 @@ GPU_TESLA_V100_SXM2 = Device(
     'TESLA V100 SXM2', clock=1530, peek_gflop=15000, mem_bandwidth=900, is_gpu=False)
 
 GPU_TESLA_V100_PCIE = Device(
-    'TESLA V100 SXM2', clock=1530, peek_gflop=14000, mem_bandwidth=900, is_gpu=False)
+    'TESLA V100 PCIE', clock=1530, peek_gflop=14000, mem_bandwidth=900, is_gpu=False)
 
 GPU_TESLA_P100_SXM2 = Device(
     'TESLA P100 SXM2', clock=1481, peek_gflop=10600, mem_bandwidth=732, is_gpu=False)
@@ -99,7 +99,7 @@ GPU_K40 = Device(
     'K40', clock=745, peek_gflop=4290, mem_bandwidth=288, is_gpu=True)
 
 GPU_K80 = Device(
-    'K80', clock=560, peek_gflop=5600, mem_bandwidth=480, is_gpu=True)
+    'K80', clock=560, peek_gflop=5600, mem_bandwidth=480, is_gpu=False)
 
 GPU_GEFORCE_780_TI = Device(
     'GeForce 780 Ti',
