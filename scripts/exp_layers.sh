@@ -5,6 +5,8 @@ OUT_FILE=$2
 
 PPP_COMP=0.62
 
+pushd ..
+
 # Summary
 ./paleo.sh summary $NET_FILE > $OUT_FILE
 
@@ -50,4 +52,4 @@ echo '\n\n' >> $OUT_FILE
     --executor=tensorflow \
     >> $OUT_FILE
 
-
+popd
