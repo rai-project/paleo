@@ -110,7 +110,7 @@ class Profiler():
                                                   profiler.message))
 
                 results.append(
-                    (layer_spec.name, flop_based_time.total_time,
+                    (layer_spec.name, profiler.name, flop_based_time.total_time,
                         executor_time.total_time, 0, flops_profiler.message,
                         profiler.message))
             else:

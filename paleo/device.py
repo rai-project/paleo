@@ -87,7 +87,7 @@ GPU_TITAN_XP = Device(
     'TITAN Xp', clock=1582, peek_gflop=12100, mem_bandwidth=547.7, is_gpu=False)
 
 GPU_TITAN_X = Device(
-    'Titan X', clock=1000, peek_gflop=6144, mem_bandwidth=336.5, is_gpu=False)
+    'Titan X', clock=1000, peek_gflop=6144, mem_bandwidth=336.5, is_gpu=True)
 
 GPU_K20 = Device(
     'K20', clock=1000, peek_gflop=3520, mem_bandwidth=208, is_gpu=True)
