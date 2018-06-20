@@ -8,7 +8,7 @@ from __future__ import print_function
 class Device(object):
     """Specification for devices."""
 
-    def __init__(self, name, clock, peek_gflop, mem_bandwidth, is_gpu=False):
+    def __init__(self, name, clock, peek_gflop, mem_bandwidth, is_gpu=True):
         """
         Args:
             name: device name
@@ -74,6 +74,18 @@ NETWORKS = {'aws': AWS,
             'pcie3': PCIe_3}
 
 # Predefined devices.
+GPU_TESLA_V100_SXM2 = Device(
+    'TESLA V100 SXM2', clock=1530, peek_gflop=15000, mem_bandwidth=900, is_gpu=True)
+
+GPU_TESLA_V100_PCIE = Device(
+    'TESLA V100 PCIE', clock=1530, peek_gflop=14000, mem_bandwidth=900, is_gpu=True)
+
+GPU_TESLA_P100_SXM2 = Device(
+    'TESLA P100 SXM2', clock=1481, peek_gflop=10600, mem_bandwidth=732, is_gpu=True)
+
+GPU_TITAN_XP = Device(
+    'TITAN Xp', clock=1582, peek_gflop=12100, mem_bandwidth=547.7, is_gpu=True)
+
 GPU_TITAN_X = Device(
     'Titan X', clock=1000, peek_gflop=6144, mem_bandwidth=336.5, is_gpu=True)
 
@@ -107,6 +119,10 @@ CPU_I7_5930K = Device(
     'CPU i7 5930K', clock=6 * 35000, peek_gflop=289, mem_bandwidth=68)
 
 DEVICES = {
+    'TESLA_V100_SXM2': GPU_TESLA_V100_SXM2,
+    'TESLA_V100_PCIE': GPU_TESLA_V100_PCIE,
+    'TESLA_P100_SXM2': GPU_TESLA_P100_SXM2,
+    'TITAN_Xp': GPU_TITAN_XP,
     'TITAN_X': GPU_TITAN_X,
     'K20': GPU_K20,
     'K20X': GPU_K20X,
