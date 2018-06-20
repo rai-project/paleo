@@ -330,7 +330,7 @@ def fullpass(netspec_files, device_name, num_warmup, num_iter, batch_size):
 @click.option('--extract_conv_dir', help=HELP_EXTRACT_CONV_DIR)
 @click.option('--direction', default='forward')
 @click.option('--gradient_wrt', default='data')
-@click.option('--use_only_gemm', is_flag=True)
+@click.option('--use_only_gemm', is_flag=False)
 @click.option('--ppp_comp', default=1.0)
 @click.option('--executor')
 @click.option('--separator', default='\t')

@@ -1,10 +1,10 @@
 #! /bin/sh
 
+PPP_COMP=1.0
 DEVICE_NAME=$1
 NET_FILE=$2
-OUT_FILE=$3
+OUT_FILE="$3_$PPP_COMP"
 
-PPP_COMP=0.62
 
 pushd ..
 
