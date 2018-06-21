@@ -78,10 +78,13 @@ GPU_TESLA_V100_SXM2 = Device(
     'TESLA V100 SXM2', clock=1530, peek_gflop=15000, mem_bandwidth=900, is_gpu=True)
 
 GPU_TESLA_V100_PCIE = Device(
-    'TESLA V100 PCIE', clock=1530, peek_gflop=14000, mem_bandwidth=900, is_gpu=True)
+    'TESLA V100 PCIE', clock=1380, peek_gflop=14000, mem_bandwidth=900, is_gpu=True)
 
 GPU_TESLA_P100_SXM2 = Device(
     'TESLA P100 SXM2', clock=1481, peek_gflop=10600, mem_bandwidth=732, is_gpu=True)
+
+GPU_TESLA_P100_PCIE = Device(
+    'TESLA P100 PCIE', clock=1328, peek_gflop=9300, mem_bandwidth=732, is_gpu=True)
 
 GPU_TITAN_XP = Device(
     'TITAN Xp', clock=1582, peek_gflop=12100, mem_bandwidth=547.7, is_gpu=True)
@@ -122,6 +125,7 @@ DEVICES = {
     'TESLA_V100_SXM2': GPU_TESLA_V100_SXM2,
     'TESLA_V100_PCIE': GPU_TESLA_V100_PCIE,
     'TESLA_P100_SXM2': GPU_TESLA_P100_SXM2,
+    'TESLA_P100_PCIE': GPU_TESLA_P100_PCIE,
     'TITAN_Xp': GPU_TITAN_XP,
     'TITAN_X': GPU_TITAN_X,
     'K20': GPU_K20,
